@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: To-Do App API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: todos
+    description: Todo operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,149 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /todos:
+    get:
+      operationId: listTodos
+      tags: [todos]
+      summary: List all todos
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [all, active, completed]
+          required: false
+        - in: query
+          name: priority
+          schema:
+            type: string
+            enum: [low, medium, high]
+          required: false
+      responses:
+        "200":
+          description: List of todos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+    post:
+      operationId: createTodo
+      tags: [todos]
+      summary: Create a new todo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "400":
+          description: Bad request
+
+  /todos/stats:
+    get:
+      operationId: getTodoStats
+      tags: [todos]
+      summary: Get todo statistics
+      responses:
+        "200":
+          description: Todo statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoStats"
+
+  /todos/{id}:
+    get:
+      operationId: getTodo
+      tags: [todos]
+      summary: Get a single todo
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Todo found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateTodo
+      tags: [todos]
+      summary: Update a todo
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteTodo
+      tags: [todos]
+      summary: Delete a todo
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /todos/{id}/toggle:
+    patch:
+      operationId: toggleTodo
+      tags: [todos]
+      summary: Toggle todo completion status
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Toggled
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: Not found
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +179,78 @@ components:
       required:
         - status
 
+    Todo:
+      type: object
+      required: [id, title, completed, priority, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: ["string", "null"]
+        completed:
+          type: boolean
+        priority:
+          type: string
+          enum: [low, medium, high]
+        dueDate:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+    TodoInput:
+      type: object
+      required: [title]
+      properties:
+        title:
+          type: string
+          minLength: 1
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high]
+        dueDate:
+          type: string
+
+    TodoUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high]
+        dueDate:
+          type: ["string", "null"]
+        completed:
+          type: boolean
+
+    TodoStats:
+      type: object
+      required: [total, completed, active, overdue, byPriority]
+      properties:
+        total:
+          type: integer
+        completed:
+          type: integer
+        active:
+          type: integer
+        overdue:
+          type: integer
+        byPriority:
+          type: object
+          required: [low, medium, high]
+          properties:
+            low:
+              type: integer
+            medium:
+              type: integer
+            high:
+              type: integer
