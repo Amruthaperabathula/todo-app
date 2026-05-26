@@ -1,0 +1,96 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[left=1.2cm, right=1.2cm, top=1.2cm, bottom=1.2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\definecolor{myblue}{HTML}{1F4E79}
+
+\pagenumbering{gobble}
+\hypersetup{colorlinks=true, urlcolor=myblue}
+
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\titlerule]
+
+\setlist[itemize]{leftmargin=1.5em, label=\small$\circ$}
+
+\begin{document}
+
+%-------------------- HEADER --------------------
+\begin{center}
+{\LARGE \textbf{Amrutha Perabathula}} \\[4pt]
+
+\faEnvelope\;\underline {\href{mailto:phanisriamruthavarshini@gmail.com}{phanisriamruthavarshini@gmail.com}}
+ $|$
+\faPhone\;
+\underline{\href{tel:+917995478199}{+91 7995478199}} \\[4pt] 
+\faLinkedin\; \underline{\href{https://www.linkedin.com/in/amruthaperabathula}{LinkedIn}}
+ $|$
+\faGithub\; \underline{\href{https://github.com/Amruthaperabathula}{GitHub}}
+\end{center}
+
+%-------------------- EDUCATION --------------------
+\section{Education}
+
+\textbf{Bonam Venkata Chalamayya Institute of Technology \& Science} \hfill 2023 -- 2027 \\
+B.Tech in Computer Science (CSE) --- \textbf{CGPA: 9.3}
+
+\noindent\textbf{Aditya Junior College} \hfill 2021 -- 2023 \\
+Board of Intermediate Education, Andhra Pradesh --- \textbf{Percentage: 96\%}
+
+%-------------------- EXPERIENCE --------------------
+\section{Internship Experience}
+
+\textbf{Python Full Stack Development Intern — EduSkills Academy} \hfill Jan 2026 -- Mar 2026
+\begin{itemize}
+\item Built RESTful APIs using \textbf{FastAPI} and validated data using \textbf{Pydantic}.
+\item Developed frontend components using \textbf{React} and integrated with backend APIs.
+\item Gained experience in full-stack development lifecycle including API design and testing.
+\end{itemize}
+
+\noindent\textbf{Mobile App Development Intern — NullClass} \hfill Dec 2025 -- Jan 2026
+\begin{itemize}
+\item Developed an Android application with product listing, cart functionality, and navigation flow.
+\item Applied Android concepts such as activities, intents, and UI components in real-world tasks.
+\item Improved application workflows through debugging and optimization.
+\end{itemize}
+
+%-------------------- SKILLS --------------------
+\section{Skills}
+
+\textbf{Languages:} Java, Python \\
+\textbf{Technical Skills:} Data Structures and Algorithms, OOP, DBMS, Operating Systems, Machine Learning \\
+\textbf{Web Technologies:} HTML, CSS, JavaScript \\
+\textbf{Tools:} Git, GitHub, Eclipse, Android Studio, VS Code
+
+%-------------------- PROJECTS --------------------
+\section{Projects}
+\textbf{AI-Powered Expense Tracker}
+\quad
+\href{https://github.com/Amruthaperabathula/Ai-Expense-Tracker}
+{\underline{GitHub}\kern0.3em{\scriptsize\faExternalLink*}}
+\quad $|$ \quad
+\href{https://ai-expense-tracker-r3zwzv4xptzagappwsme4jg.streamlit.app/}
+{\underline{Live Link}\kern0.3em{\scriptsize\faExternalLink*}}
+
+\begin{itemize}
+\item Built a machine learning-based expense classification system using \textbf{TF-IDF} and \textbf{Logistic Regression}.
+\item Developed an interactive dashboard using \textbf{Streamlit} for real-time predictions and visualization.
+\item Performed data preprocessing and feature extraction using \textbf{Pandas} and \textbf{Scikit-learn}.
+\item Visualized spending insights using bar and pie charts.
+\item \textbf{Tech Stack:} Python, Scikit-learn, Pandas, Matplotlib, Streamlit.
+\end{itemize}
+
+
+
+
+%-------------------- ACHIEVEMENTS --------------------
+\section{Achievements}
+
+\begin{itemize}
+\item Solved 100+ problems on \textbf{HackerRank} focusing on Python and data structures.
+\item \textbf{Runner-Up} — Quiz Contest "What's What" organized by VIVA Education.
+\end{itemize}
+
+\end{document}
